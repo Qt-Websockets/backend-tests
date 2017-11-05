@@ -21,8 +21,8 @@ Install pytest
 
 ## Run tests
 
-Check work freehackquestbackend and mysql 
-Download repo and change directory to repo
+Check work freehackquestbackend and mysql.
+Download repo and change directory to repo.
 
 	$ git clone https://github.com/freehackquest/backend-tests.git
 	$ cd ./backend-tests
