@@ -9,6 +9,7 @@ Create test database by sql-queries:
 	> FLUSH PRIVILEGES;
 
 Change /etc/freehackquest-backend/conf.ini
+
 	name=test
 
 ## Requirements
