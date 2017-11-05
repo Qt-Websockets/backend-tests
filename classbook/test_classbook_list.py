@@ -36,12 +36,12 @@ def teardown():
 
 def test_with_default_parentid():
 	"""Testcase for classbook_list handler with default parentid=0""" 
-	json_request = json.dumps({"parentid":0,"cmd":"classbook_get_list","m":"m7334"})
+	json_request = json.dumps({"parentid":0,"cmd":"classbook_list","m":"m7334"})
 	ws.send(json_request)
 	response = json.loads(ws.recv())
 	print("Response: %s" % response)
 	must_be = json.loads(
-		"""{"cmd":"classbook_get_list",
+		"""{"cmd":"classbook_list",
 		"data":[
 		{"childs":1,"classbookid":100,"name":"test1","parentid":0,"proposals":0},
 		{"childs":0,"classbookid":102,"name":"test2","parentid":0,"proposals":1},
@@ -51,13 +51,13 @@ def test_with_default_parentid():
 
 def test_with_not_exists_parentid():
 	"""Testcase for classbook_list handler with not exists parentid""" 
-	json_request = json.dumps({"parentid":432,"cmd":"classbook_get_list","m":"m7334"})
+	json_request = json.dumps({"parentid":432,"cmd":"classbook_list","m":"m7334"})
 	ws.send(json_request)
 	response = json.loads(ws.recv())
 	print("Response: %s" % response)
 	must_be = json.loads(
 		"""{
-			    'cmd': 'classbook_get_list',
+			    'cmd': 'classbook_list',
 			    'code': 404,
 			    'error': 'Not found the article with a given parentid',
 			    'm': 'm7334',
@@ -67,13 +67,13 @@ def test_with_not_exists_parentid():
 
 def test_with_not_default_parentid():
 	"""Testcase for classbook_list handler with not default parentid""" 
-	json_request = json.dumps({"parentid":100,"cmd":"classbook_get_list","m":"m7334"})
+	json_request = json.dumps({"parentid":100,"cmd":"classbook_list","m":"m7334"})
 	ws.send(json_request)
 	response = json.loads(ws.recv())
 	print("Response: %s" % response)
 	must_be = json.loads(
 		"""{
-			    'cmd': 'classbook_get_list',
+			    'cmd': 'classbook_list',
 			    'data': [{
 			        'childs': 0,
 			        'classbookid': 104,
@@ -90,13 +90,13 @@ def test_with_exist_lang_default_parentid():
 	"""Testcase for classbook_list handler with exist localization
 	 lang=ru and default parentid""" 
 	json_request = json.dumps({"parentid":100, "lang": "ru",
-					 "cmd":"classbook_get_list","m":"m7334"})
+					 "cmd":"classbook_list","m":"m7334"})
 	ws.send(json_request)
 	response = json.loads(ws.recv())
 	print("Response: %s" % response)
 	must_be = json.loads(
 		"""{
-			    'cmd': 'classbook_get_list',
+			    'cmd': 'classbook_list',
 			    'data': [{
 			        'childs': 0,
 			        'classbookid': 104,
