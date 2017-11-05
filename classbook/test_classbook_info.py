@@ -40,7 +40,7 @@ def test_info_without_lang():
 		"m":"m843","result":"DONE"}""")
 	assert response == must_be
 
-def test_info_with_lang():
+def test_info_with_lang_with_local():
 	"""Тестирует classbook_infо с указанным языком, есть локализация"""
 	json_request = json.dumps(
 		{"classbookid":203, "lang":"ru", "cmd":"classbook_get_info","m":"m844"})
@@ -54,6 +54,50 @@ def test_info_with_lang():
 		 {'ru': 204}, 
 		 'name': 'тест локализации', 'parentid': 0, 'uuid': '098'}, 
 		'm': 'm844', 'result': 'DONE'}""".replace("'", "\""))
+	assert response == must_be
+
+def test_info_with_lang_with_out_local():
+	"""Тестирует classbook_infо с указанным языком, отсутствует локализация"""
+	json_request = json.dumps(
+		{"classbookid":202, "lang":"ru", "cmd":"classbook_get_info","m":"m82"})
+	ws.send(json_request)
+	response = json.loads(ws.recv())
+	print("Response: %s" % response)
+	must_be = json.loads(
+		"""{"cmd":"classbook_get_info",
+		"data":
+		{"classbookid":202,"content":"test","lang":"en",
+		"langs":{},"name":"test","parentid":0,"uuid":"098"},
+		"m":"m82","result":"DONE"}""")
+	assert response == must_be
+
+def test_info_with_lang_not_exists_article():
+	"""Тестирует classbook_infо с указанным языком, несуществующей статьей"""
+	json_request = json.dumps(
+		{"classbookid":2022, "lang":"ru", "cmd":"classbook_get_info","m":"m82"})
+	ws.send(json_request)
+	response = json.loads(ws.recv())
+	print("Response: %s" % response)
+	must_be = json.loads(
+		"""{'cmd': 'classbook_get_info', 'code': 404, 
+		'error': 'Not found the article', 
+		'm': 'm82', 'result': 'FAIL'}""".replace("'", "\""))
+	assert response == must_be
+
+def test_info_with_unsupported_lang():
+	"""Тестирует classbook_infо с неподдерживаемым языком"""
+	json_request = json.dumps(
+		{"classbookid":202, "lang":"er", "cmd":"classbook_get_info","m":"m82"})
+	ws.send(json_request)
+	response = json.loads(ws.recv())
+	print("Response: %s" % response)
+	must_be = json.loads(
+		"""{
+		    "cmd": "classbook_get_info",
+		    "code": 404,
+		    "error": "Language is'not support",
+		    "m": "m82",
+		    "result": "FAIL"}""")
 	assert response == must_be
 
 def test_info_non_found():
