@@ -1,6 +1,6 @@
 # backend-tests
 
-##Set the settings
+## Set the settings
 
 Create test database by sql-queries:
 
@@ -11,17 +11,18 @@ Create test database by sql-queries:
 Change /etc/freehackquest-backend/conf.ini
 	name=test
 
-##Requirements
+## Requirements
 
 Install pytest
 
 	$ sudo apt install python-pip
 	$ pip3 install -U pytest
 
-##Run tests
+## Run tests
 
 Check work freehackquestbackend and mysql 
 Download repo and change directory to repo
+
 	$ git clone https://github.com/freehackquest/backend-tests.git
 	$ cd ./backend-tests
 	$ pytest
