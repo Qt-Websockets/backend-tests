@@ -7,6 +7,7 @@ def setup():
 	with db.cursor() as cur:
 		cur.execute("""DELETE FROM classbook""")
 		cur.execute("""DELETE FROM classbook_proposal""")
+		cur.execute("""DELETE FROM classbook_localization""")
 		cur.execute("""INSERT INTO classbook VALUES(
 			 100, 0, 1, '098', '1f43f', 'test1', 'test1', 
 			 '2017-10-10 10:10:10', '2017-10-10 10:10:10')""")
@@ -22,16 +23,18 @@ def setup():
 		cur.execute("""INSERT INTO classbook_proposal VALUES(
 			 105, 102, 'en', 'proposal', 'test1', 
 			 '2017-10-10 10:10:10')""")
-	db.commit()
+		cur.execute("""INSERT INTO classbook_localization VALUES(
+			 104, 104, 'ru', 'тест локализации', 'локализация',
+			 '2017-10-10 10:10:10', '2017-10-10 10:10:10')""")
 
 def teardown():
 	with db.cursor() as cur:
 		cur.execute("""DELETE FROM classbook""")
 		cur.execute("""DELETE FROM classbook_proposal""")
-	db.commit()
+		cur.execute("""DELETE FROM classbook_localization""")
 
 
-def test_with_parentid():
+def test_with_default_parentid():
 	"""Testcase for classbook_list handler with default parentid=0""" 
 	json_request = json.dumps({"parentid":0,"cmd":"classbook_get_list","m":"m7334"})
 	ws.send(json_request)
@@ -44,4 +47,64 @@ def test_with_parentid():
 		{"childs":0,"classbookid":102,"name":"test2","parentid":0,"proposals":1},
 		{"childs":0,"classbookid":103,"name":"test2","parentid":0,"proposals":0}],
 		"m":"m7334","result":"DONE"}""")
+	assert response == must_be
+
+def test_with_not_exists_parentid():
+	"""Testcase for classbook_list handler with not exists parentid""" 
+	json_request = json.dumps({"parentid":432,"cmd":"classbook_get_list","m":"m7334"})
+	ws.send(json_request)
+	response = json.loads(ws.recv())
+	print("Response: %s" % response)
+	must_be = json.loads(
+		"""{
+			    'cmd': 'classbook_get_list',
+			    'code': 404,
+			    'error': 'Not found the article with a given parentid',
+			    'm': 'm7334',
+			    'result': 'FAIL'
+			}""".replace("'", "\""))
+	assert response == must_be
+
+def test_with_not_default_parentid():
+	"""Testcase for classbook_list handler with not default parentid""" 
+	json_request = json.dumps({"parentid":100,"cmd":"classbook_get_list","m":"m7334"})
+	ws.send(json_request)
+	response = json.loads(ws.recv())
+	print("Response: %s" % response)
+	must_be = json.loads(
+		"""{
+			    'cmd': 'classbook_get_list',
+			    'data': [{
+			        'childs': 0,
+			        'classbookid': 104,
+			        'name': 'test1test1',
+			        'parentid': 100,
+			        'proposals': 0
+			    }],
+			    'm': 'm7334',
+			    'result': 'DONE'
+			}""".replace("'", "\""))
+	assert response == must_be
+
+def test_with_exist_lang_default_parentid():
+	"""Testcase for classbook_list handler with exist localization
+	 lang=ru and default parentid""" 
+	json_request = json.dumps({"parentid":100, "lang": "ru",
+					 "cmd":"classbook_get_list","m":"m7334"})
+	ws.send(json_request)
+	response = json.loads(ws.recv())
+	print("Response: %s" % response)
+	must_be = json.loads(
+		"""{
+			    'cmd': 'classbook_get_list',
+			    'data': [{
+			        'childs': 0,
+			        'classbookid': 104,
+			        'name': 'тест локализации',
+			        'parentid': 100,
+			        'proposals': 0
+			    }],
+			    'm': 'm7334',
+			    'result': 'DONE'
+			}""".replace("'", "\""))
 	assert response == must_be

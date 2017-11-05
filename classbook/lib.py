@@ -11,5 +11,6 @@ def ws():
 
 def db():
 	import pymysql
-	db = pymysql.connect(user="root", passwd="root", db="test", use_unicode=True, charset="utf8")
+	db = pymysql.connect(user="root", passwd="root", db="test", 
+		use_unicode=True, charset="utf8", autocommit=True)
 	return db

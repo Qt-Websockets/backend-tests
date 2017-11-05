@@ -17,13 +17,25 @@ def setup():
 		cur.execute("""INSERT INTO classbook_localization VALUES(
 			 204, 203, 'ru', 'тест локализации', 'локализация',
 			 '2017-10-10 10:10:10', '2017-10-10 10:10:10')""")
-	db.commit()
 
 def teardown():
 	with db.cursor() as cur:
 		cur.execute("""DELETE FROM classbook""")
 		cur.execute("""DELETE FROM classbook_localization""")
-	db.commit()
+
+def test_info_non_found():
+	"""Тестирует classbook_infо на несуществующую статью"""
+	json_request = json.dumps(
+		{"classbookid":23232,"cmd":"classbook_get_info","m":"m8431"})
+	ws.send(json_request)
+	response = json.loads(ws.recv())
+	print("Response: %s" % response)
+	must_be = json.loads(
+		"""{"cmd":"classbook_get_info",
+		"code": 404,
+		"error": "Not found the article",
+		"m":"m8431","result":"FAIL"}""")
+	assert response == must_be
 
 def test_info_without_lang():
 	"""Testcase for handler classbook_info without lang param"""
@@ -100,16 +112,20 @@ def test_info_with_unsupported_lang():
 		    "result": "FAIL"}""")
 	assert response == must_be
 
-def test_info_non_found():
-	"""Тестирует classbook_infо на несуществующую статью"""
+def test_info_with_unsupported_lang_not_exists_article():
+	"""Тестирует classbook_infо с неподдерживаемым языком
+	несуществующей статьи"""
 	json_request = json.dumps(
-		{"classbookid":23232,"cmd":"classbook_get_info","m":"m8431"})
+		{"classbookid":20222, "lang":"er", "cmd":"classbook_get_info","m":"m82"})
 	ws.send(json_request)
 	response = json.loads(ws.recv())
 	print("Response: %s" % response)
 	must_be = json.loads(
-		"""{"cmd":"classbook_get_info",
-		"code": 404,
-		"error": "Not found the article",
-		"m":"m8431","result":"FAIL"}""")
+		"""{
+		    'cmd': 'classbook_get_info',
+		    'code': 404,
+		    'error': 'Not found the article',
+		    'm': 'm82',
+		    'result': 'FAIL'
+			}""".replace("'", "\""))
 	assert response == must_be
