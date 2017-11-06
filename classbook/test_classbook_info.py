@@ -39,6 +39,24 @@ def setup():
         cur.execute("""INSERT INTO classbook VALUES(
              211, 210, 7, "098", "1f43f", "test_path", 
              "test", "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
+        cur.execute("""INSERT INTO classbook VALUES(
+             212, 213, 7, "098", "1f43f", "test_path", 
+             "test", "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
+        cur.execute("""INSERT INTO classbook VALUES(
+             213, 212, 7, "098", "1f43f", "test_path", 
+             "test", "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
+        cur.execute("""INSERT INTO classbook VALUES(
+             214, 215, 7, "098", "1f43f", "test_path", 
+             "test", "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
+        cur.execute("""INSERT INTO classbook VALUES(
+             215, 216, 7, "098", "1f43f", "test_path", 
+             "test", "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
+        cur.execute("""INSERT INTO classbook VALUES(
+             216, 214, 7, "098", "1f43f", "test_path", 
+             "test", "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
+        cur.execute("""INSERT INTO classbook VALUES(
+             217, 215, 7, "098", "1f43f", "test_path", 
+             "test", "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
 
 
 def teardown():
@@ -467,6 +485,129 @@ def test_info_parents_path_6():
                     "classbookid": 205,
                     "name": "test_path",
                     "parentid": 0
+                }
+            ],
+            "uuid": "098"
+        },
+        "m": "m82",
+        "result": "DONE"
+    }""")
+    assert response == must_be
+
+
+def test_info_parents_path_cicle():
+    """Тестирует classbook_infо
+    Проверка родительского пути простой цикл"""
+    json_request = json.dumps({
+        "classbookid": 213,
+        "cmd": "classbook_info",
+        "m": "m82"
+    })
+    ws.send(json_request)
+    response = json.loads(ws.recv())
+    print("Response: %s" % response)
+    must_be = json.loads("""{
+        "cmd": "classbook_info",
+        "data": {
+            "classbookid": 213,
+            "content": "test",
+            "lang": "en",
+            "langs": {},
+            "name": "test_path",
+            "parentid": 212,
+            "parents": [
+                {
+                    "classbookid": 212,
+                    "name": "test_path",
+                    "parentid": 213
+                }
+            ],
+            "uuid": "098"
+        },
+        "m": "m82",
+        "result": "DONE"
+    }""")
+    assert response == must_be
+
+
+def test_info_parents_path_hard_cicle_1():
+    """Тестирует classbook_infо
+    Проверка родительского пути сложный цикл
+    214 -> 215 -> 216 -\> 214"""
+    json_request = json.dumps({
+        "classbookid": 214,
+        "cmd": "classbook_info",
+        "m": "m82"
+    })
+    ws.send(json_request)
+    response = json.loads(ws.recv())
+    print("Response: %s" % response)
+    must_be = json.loads("""{
+        "cmd": "classbook_info",
+        "data": {
+            "classbookid": 214,
+            "content": "test",
+            "lang": "en",
+            "langs": {},
+            "name": "test_path",
+            "parentid": 215,
+            "parents": [
+                {
+                    "classbookid": 215,
+                    "name": "test_path",
+                    "parentid": 216
+                },
+                {
+                    "classbookid": 216,
+                    "name": "test_path",
+                    "parentid": 214
+                }
+            ],
+            "uuid": "098"
+        },
+        "m": "m82",
+        "result": "DONE"
+    }""")
+    assert response == must_be
+
+
+def test_info_parents_path_hard_cicle_2():
+    """Тестирует classbook_infо
+    Проверка родительского пути сложный цикл
+    217 -> 215-> 216 -> 214
+            ^-/--/---/---|  """
+    json_request = json.dumps({
+        "classbookid": 217,
+        "cmd": "classbook_info",
+        "m": "m82"
+    })
+    ws.send(json_request)
+    response = json.loads(ws.recv())
+    print("Response: %s" % response)
+    must_be = json.loads("""{
+        "cmd": "classbook_info",
+        "data": {
+            "classbookid": 217,
+            "content": "test",
+            "lang": "en",
+            "langs": {},
+            "name": "test_path",
+            "parentid": 215,
+            "parents": [
+                {
+                    "classbookid": 215,
+                    "name": "test_path",
+                    "parentid": 216
+                },
+                {
+                    "classbookid": 216,
+                    "name": "test_path",
+                    "parentid": 214
+                },
+                {
+                    "classbookid": 214,
+                    "name": "test_path",
+                    "parentid": 215
                 }
             ],
             "uuid": "098"
