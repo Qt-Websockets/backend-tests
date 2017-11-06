@@ -18,6 +18,27 @@ def setup():
         cur.execute("""INSERT INTO classbook_localization VALUES(
              204, 203, "ru", "тест локализации", "локализация",
              "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
+        cur.execute("""INSERT INTO classbook VALUES(
+             205, 0, 7, "098", "1f43f", "test_path", 
+             "test", "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
+        cur.execute("""INSERT INTO classbook VALUES(
+             206, 205, 7, "098", "1f43f", "test_path", 
+             "test", "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
+        cur.execute("""INSERT INTO classbook VALUES(
+             207, 206, 7, "098", "1f43f", "test_path", 
+             "test", "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
+        cur.execute("""INSERT INTO classbook VALUES(
+             208, 207, 7, "098", "1f43f", "test_path", 
+             "test", "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
+        cur.execute("""INSERT INTO classbook VALUES(
+             209, 208, 7, "098", "1f43f", "test_path", 
+             "test", "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
+        cur.execute("""INSERT INTO classbook VALUES(
+             210, 209, 7, "098", "1f43f", "test_path", 
+             "test", "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
+        cur.execute("""INSERT INTO classbook VALUES(
+             211, 210, 7, "098", "1f43f", "test_path", 
+             "test", "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
 
 
 def teardown():
@@ -183,7 +204,7 @@ def test_info_with_unsupported_lang():
     must_be = json.loads("""{
             "cmd": "classbook_info",
             "code": 404,
-            "error": "Language is'not support",
+            "error": "Language is not support",
             "m": "m82",
             "result": "FAIL"}""")
     assert response == must_be
@@ -208,4 +229,249 @@ def test_info_with_unsupported_lang_not_exists_article():
             "m": "m82",
             "result": "FAIL"
             }""")
+    assert response == must_be
+
+
+def test_info_parents_path_2():
+    """Тестирует classbook_infо
+    Проверка родительского пути 2 род"""
+    json_request = json.dumps({
+        "classbookid": 206,
+        "cmd": "classbook_info",
+        "m": "m82"
+    })
+    ws.send(json_request)
+    response = json.loads(ws.recv())
+    print("Response: %s" % response)
+    must_be = json.loads("""{
+        "cmd": "classbook_info",
+        "data": {
+            "classbookid": 206,
+            "content": "test",
+            "lang": "en",
+            "langs": {},
+            "name": "test_path",
+            "parentid": 205,
+            "parents": [
+                {
+                    "classbookid": 205,
+                    "name": "test_path",
+                    "parentid": 0
+                },
+                {
+                    "classbookid": 0,
+                    "name": "Root",
+                    "parentid": 0
+                }
+            ],
+            "uuid": "098"
+        },
+        "m": "m82",
+        "result": "DONE"
+    }""")
+    assert response == must_be
+
+
+def test_info_parents_path_3():
+    """Тестирует classbook_infо
+    Проверка родительского пути 3 род"""
+    json_request = json.dumps({
+        "classbookid": 207,
+        "cmd": "classbook_info",
+        "m": "m82"
+    })
+    ws.send(json_request)
+    response = json.loads(ws.recv())
+    print("Response: %s" % response)
+    must_be = json.loads("""{
+        "cmd": "classbook_info",
+        "data": {
+            "classbookid": 207,
+            "content": "test",
+            "lang": "en",
+            "langs": {},
+            "name": "test_path",
+            "parentid": 206,
+            "parents": [
+                {
+                    "classbookid": 206,
+                    "name": "test_path",
+                    "parentid": 205
+                },
+                {
+                    "classbookid": 205,
+                    "name": "test_path",
+                    "parentid": 0
+                },
+                {
+                    "classbookid": 0,
+                    "name": "Root",
+                    "parentid": 0
+                }
+            ],
+            "uuid": "098"
+        },
+        "m": "m82",
+        "result": "DONE"
+    }""")
+    assert response == must_be
+
+
+def test_info_parents_path_4():
+    """Тестирует classbook_infо
+    Проверка родительского пути 4 род"""
+    json_request = json.dumps({
+        "classbookid": 208,
+        "cmd": "classbook_info",
+        "m": "m82"
+    })
+    ws.send(json_request)
+    response = json.loads(ws.recv())
+    print("Response: %s" % response)
+    must_be = json.loads("""{
+        "cmd": "classbook_info",
+        "data": {
+            "classbookid": 208,
+            "content": "test",
+            "lang": "en",
+            "langs": {},
+            "name": "test_path",
+            "parentid": 207,
+            "parents": [
+                {
+                    "classbookid": 207,
+                    "name": "test_path",
+                    "parentid": 206
+                },
+                {
+                    "classbookid": 206,
+                    "name": "test_path",
+                    "parentid": 205
+                },
+                {
+                    "classbookid": 205,
+                    "name": "test_path",
+                    "parentid": 0
+                },
+                {
+                    "classbookid": 0,
+                    "name": "Root",
+                    "parentid": 0
+                }
+            ],
+            "uuid": "098"
+        },
+        "m": "m82",
+        "result": "DONE"
+    }""")
+    assert response == must_be
+
+
+def test_info_parents_path_5():
+    """Тестирует classbook_infо
+    Проверка родительского пути 5 род"""
+    json_request = json.dumps({
+        "classbookid": 209,
+        "cmd": "classbook_info",
+        "m": "m82"
+    })
+    ws.send(json_request)
+    response = json.loads(ws.recv())
+    print("Response: %s" % response)
+    must_be = json.loads("""{
+        "cmd": "classbook_info",
+        "data": {
+            "classbookid": 209,
+            "content": "test",
+            "lang": "en",
+            "langs": {},
+            "name": "test_path",
+            "parentid": 208,
+            "parents": [
+                {
+                    "classbookid": 208,
+                    "name": "test_path",
+                    "parentid": 207
+                },
+                {
+                    "classbookid": 207,
+                    "name": "test_path",
+                    "parentid": 206
+                },
+                {
+                    "classbookid": 206,
+                    "name": "test_path",
+                    "parentid": 205
+                },
+                {
+                    "classbookid": 205,
+                    "name": "test_path",
+                    "parentid": 0
+                },
+                {
+                    "classbookid": 0,
+                    "name": "Root",
+                    "parentid": 0
+                }
+            ],
+            "uuid": "098"
+        },
+        "m": "m82",
+        "result": "DONE"
+    }""")
+    assert response == must_be
+
+
+def test_info_parents_path_6():
+    """Тестирует classbook_infо
+    Проверка родительского пути 6 род"""
+    json_request = json.dumps({
+        "classbookid": 210,
+        "cmd": "classbook_info",
+        "m": "m82"
+    })
+    ws.send(json_request)
+    response = json.loads(ws.recv())
+    print("Response: %s" % response)
+    must_be = json.loads("""{
+        "cmd": "classbook_info",
+        "data": {
+            "classbookid": 210,
+            "content": "test",
+            "lang": "en",
+            "langs": {},
+            "name": "test_path",
+            "parentid": 209,
+            "parents": [
+                {
+                    "classbookid": 209,
+                    "name": "test_path",
+                    "parentid": 208
+                },
+                {
+                    "classbookid": 208,
+                    "name": "test_path",
+                    "parentid": 207
+                },
+                {
+                    "classbookid": 207,
+                    "name": "test_path",
+                    "parentid": 206
+                },
+                {
+                    "classbookid": 206,
+                    "name": "test_path",
+                    "parentid": 205
+                },
+                {
+                    "classbookid": 205,
+                    "name": "test_path",
+                    "parentid": 0
+                }
+            ],
+            "uuid": "098"
+        },
+        "m": "m82",
+        "result": "DONE"
+    }""")
     assert response == must_be
