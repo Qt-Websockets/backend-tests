@@ -37,12 +37,12 @@ def test_info_non_found():
     response = json.loads(ws.recv())
     print("Response: %s" % response)
     must_be = json.loads("""{
-                    "cmd": "classbook_info",
-                    "code": 404,
-                    "error": "Not found the article",
-                    "m": "m8431",
-                    "result": "FAIL"
-                    }""")
+        "cmd": "classbook_info",
+        "code": 404,
+        "error": "Not found the article",
+        "m": "m8431",
+        "result": "FAIL"
+    }""")
     assert response == must_be
 
 
@@ -57,26 +57,26 @@ def test_info_without_lang():
     response = json.loads(ws.recv())
     print("Response: %s" % response)
     must_be = json.loads("""{
-                "cmd": "classbook_info",
-                "data": {
-                    "classbookid": 202,
-                    "content": "test",
-                    "lang": "en",
-                    "langs": {},
-                    "name": "test",
-                    "parentid": 0,
-                    "parents": [
-                        {
-                            "classbookid": 0,
-                            "name": "Root",
-                            "parentid": 0
-                        }
-                    ],
-                    "uuid": "098"
-                },
-                "m": "m843",
-                "result": "DONE"
-            }""")
+            "cmd": "classbook_info",
+            "data": {
+                "classbookid": 202,
+                "content": "test",
+                "lang": "en",
+                "langs": {},
+                "name": "test",
+                "parentid": 0,
+                "parents": [
+                    {
+                        "classbookid": 0,
+                        "name": "Root",
+                        "parentid": 0
+                    }
+                ],
+                "uuid": "098"
+            },
+            "m": "m843",
+            "result": "DONE"
+        }""")
     assert response == must_be
 
 
