@@ -11,52 +11,68 @@ def setup():
         cur.execute("""DELETE FROM classbook_localization""")
         cur.execute("""INSERT INTO classbook VALUES(
              202, 0, 6, "098", "1f43f", "test", 
-             "test", "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
+             "test", "md5md5md5md5md5md5md5md5md5md5md", 
+             "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
         cur.execute("""INSERT INTO classbook VALUES(
              203, 0, 7, "098", "1f43f", "test_with_lang", 
-             "test", "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
+             "test", "md5md5md5md5md5md5md5md5md5md5md", 
+             "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
         cur.execute("""INSERT INTO classbook_localization VALUES(
-             204, 203, "ru", "тест локализации", "локализация",
+             204, 203, "098", "ru", "тест локализации", 
+             "локализация", "md5md5md5md5md5md5md5md5md5md5md",
              "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
         cur.execute("""INSERT INTO classbook VALUES(
              205, 0, 7, "098", "1f43f", "test_path", 
-             "test", "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
+             "test", "md5md5md5md5md5md5md5md5md5md5md", 
+             "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
         cur.execute("""INSERT INTO classbook VALUES(
              206, 205, 7, "098", "1f43f", "test_path", 
-             "test", "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
+             "test", "md5md5md5md5md5md5md5md5md5md5md", 
+             "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
         cur.execute("""INSERT INTO classbook VALUES(
              207, 206, 7, "098", "1f43f", "test_path", 
-             "test", "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
+             "test", "md5md5md5md5md5md5md5md5md5md5md", 
+             "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
         cur.execute("""INSERT INTO classbook VALUES(
              208, 207, 7, "098", "1f43f", "test_path", 
-             "test", "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
+             "test", "md5md5md5md5md5md5md5md5md5md5md", 
+             "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
         cur.execute("""INSERT INTO classbook VALUES(
              209, 208, 7, "098", "1f43f", "test_path", 
-             "test", "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
+             "test", "md5md5md5md5md5md5md5md5md5md5md", 
+             "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
         cur.execute("""INSERT INTO classbook VALUES(
              210, 209, 7, "098", "1f43f", "test_path", 
-             "test", "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
+             "test", "md5md5md5md5md5md5md5md5md5md5md", 
+             "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
         cur.execute("""INSERT INTO classbook VALUES(
              211, 210, 7, "098", "1f43f", "test_path", 
-             "test", "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
+             "test", "md5md5md5md5md5md5md5md5md5md5md", 
+             "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
         cur.execute("""INSERT INTO classbook VALUES(
              212, 213, 7, "098", "1f43f", "test_path", 
-             "test", "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
+             "test", "md5md5md5md5md5md5md5md5md5md5md", 
+             "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
         cur.execute("""INSERT INTO classbook VALUES(
              213, 212, 7, "098", "1f43f", "test_path", 
-             "test", "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
+             "test", "md5md5md5md5md5md5md5md5md5md5md", 
+             "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
         cur.execute("""INSERT INTO classbook VALUES(
              214, 215, 7, "098", "1f43f", "test_path", 
-             "test", "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
+             "test", "md5md5md5md5md5md5md5md5md5md5md", 
+             "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
         cur.execute("""INSERT INTO classbook VALUES(
              215, 216, 7, "098", "1f43f", "test_path", 
-             "test", "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
+             "test", "md5md5md5md5md5md5md5md5md5md5md", 
+             "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
         cur.execute("""INSERT INTO classbook VALUES(
              216, 214, 7, "098", "1f43f", "test_path", 
-             "test", "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
+             "test", "md5md5md5md5md5md5md5md5md5md5md", 
+             "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
         cur.execute("""INSERT INTO classbook VALUES(
              217, 215, 7, "098", "1f43f", "test_path", 
-             "test", "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
+             "test", "md5md5md5md5md5md5md5md5md5md5md", 
+             "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
 
 
 def teardown():
