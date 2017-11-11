@@ -11,23 +11,29 @@ def setup():
         cur.execute("""DELETE FROM classbook_proposal""")
         cur.execute("""DELETE FROM classbook_localization""")
         cur.execute("""INSERT INTO classbook VALUES(
-			 100, 0, 1, '098', '1f43f', 'test1', 'test1', 
-			 '2017-10-10 10:10:10', '2017-10-10 10:10:10')""")
+			 100, 0, 1, "098", "1f43f", "test1",
+              "test1", "md5md5md5md5md5md5md5md5md5md5md", 
+			 "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
         cur.execute("""INSERT INTO classbook VALUES(
-			 102, 0, 2, '098', '1f43f', 'test2', 'test2', 
-			 '2017-10-10 10:10:10', '2017-10-10 10:10:10')""")
+			 102, 0, 2, "098", "1f43f", "test2",
+              "test2", "md5md5md5md5md5md5md5md5md5md5md", 
+			 "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
         cur.execute("""INSERT INTO classbook VALUES(
-			 103, 0, 3, '098', '1f43f', 'test2', 'test2', 
-			 '2017-10-10 10:10:10', '2017-10-10 10:10:10')""")
+			 103, 0, 3, "098", "1f43f", "test2", 
+             "test2", "md5md5md5md5md5md5md5md5md5md5md", 
+			 "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
         cur.execute("""INSERT INTO classbook VALUES(
-			 104, 100, 2, '098', '1f43f', 'test1test1', 'test1', 
-			 '2017-10-10 10:10:10', '2017-10-10 10:10:10')""")
+			 104, 100, 2, "098", "1f43f", "test1test1", 
+             "test1", "md5md5md5md5md5md5md5md5md5md5md", 
+			 "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
         cur.execute("""INSERT INTO classbook_proposal VALUES(
-			 105, 102, 'en', 'proposal', 'test1', 
-			 '2017-10-10 10:10:10')""")
+			 105, 102, "uuid", "en", "proposal", 
+             "test1", "md5md5md5md5md5md5md5md5md5md5md", 
+			 "2017-10-10 10:10:10")""")
         cur.execute("""INSERT INTO classbook_localization VALUES(
-			 104, 104, 'ru', 'тест локализации', 'локализация',
-			 '2017-10-10 10:10:10', '2017-10-10 10:10:10')""")
+			 104, 104, "uuid", "ru", "тест локализации", 
+             "локализация", "md5md5md5md5md5md5md5md5md5md5md",
+			 "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
 
 
 def teardown():
@@ -63,12 +69,12 @@ def test_with_not_exists_parentid():
     print("Response: %s" % response)
     must_be = json.loads(
             """{
-			    'cmd': 'classbook_list',
-			    'code': 404,
-			    'error': 'Not found the article with a given parentid',
-			    'm': 'm7334',
-			    'result': 'FAIL'
-			}""".replace("'", "\""))
+			    "cmd": "classbook_list",
+			    "code": 404,
+			    "error": "Not found the article with a given parentid",
+			    "m": "m7334",
+			    "result": "FAIL"
+			}""")
     assert response == must_be
 
 
@@ -81,17 +87,17 @@ def test_with_not_default_parentid():
     print("Response: %s" % response)
     must_be = json.loads(
             """{
-			    'cmd': 'classbook_list',
-			    'data': [{
-			        'childs': 0,
-			        'classbookid': 104,
-			        'name': 'test1test1',
-			        'parentid': 100,
-			        'proposals': 0
+			    "cmd": "classbook_list",
+			    "data": [{
+			        "childs": 0,
+			        "classbookid": 104,
+			        "name": "test1test1",
+			        "parentid": 100,
+			        "proposals": 0
 			    }],
-			    'm': 'm7334',
-			    'result': 'DONE'
-			}""".replace("'", "\""))
+			    "m": "m7334",
+			    "result": "DONE"
+			}""")
     assert response == must_be
 
 
@@ -105,15 +111,15 @@ def test_with_exist_lang_default_parentid():
     print("Response: %s" % response)
     must_be = json.loads(
             """{
-			    'cmd': 'classbook_list',
-			    'data': [{
-			        'childs': 0,
-			        'classbookid': 104,
-			        'name': 'тест локализации',
-			        'parentid': 100,
-			        'proposals': 0
+			    "cmd": "classbook_list",
+			    "data": [{
+			        "childs": 0,
+			        "classbookid": 104,
+			        "name": "тест локализации",
+			        "parentid": 100,
+			        "proposals": 0
 			    }],
-			    'm': 'm7334',
-			    'result': 'DONE'
-			}""".replace("'", "\""))
+			    "m": "m7334",
+			    "result": "DONE"
+			}""")
     assert response == must_be

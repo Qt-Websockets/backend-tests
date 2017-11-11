@@ -11,22 +11,28 @@ def setup():
         cur.execute("""DELETE FROM classbook_proposal""")
         cur.execute("""DELETE FROM classbook_localization""")
         cur.execute("""INSERT INTO classbook VALUES(
-             301, 0, 1, "098", "1f43f", "test1", "test1", 
+             301, 0, 1, "098", "1f43f", "test1", 
+             "test1", "5a105e8b9d40e1329780d62ea2265d8a", 
              "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
         cur.execute("""INSERT INTO classbook VALUES(
-             302, 0, 2, "098as", "1f43f", "test1", "test1", 
+             302, 0, 2, "098as", "1f43f", "test1", 
+             "test1", "5a105e8b9d40e1329780d62ea2265d8a", 
              "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
         cur.execute("""INSERT INTO classbook VALUES(
-             303, 0, 3, "09a8as", "1fsd43f", "tesast1", "test1", 
+             303, 0, 3, "09a8as", "1fsd43f", "tesast1", 
+             "test1", "5a105e8b9d40e1329780d62ea2265d8a", 
              "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
         cur.execute("""INSERT INTO classbook VALUES(
-             304, 0, 4, "09a8as", "1fsd43f", "tesast1", "test1", 
+             304, 0, 4, "09a8as", "1fsd43f", "tesast1", 
+             "test1", "5a105e8b9d40e1329780d62ea2265d8a", 
              "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
         cur.execute("""INSERT INTO classbook VALUES(
-             305, 0, 5, "09a8as", "1fsd43f", "tesast1", "test1", 
+             305, 0, 5, "09a8as", "1fsd43f", "tesast1", 
+             "test1", "5a105e8b9d40e1329780d62ea2265d8a", 
              "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
         cur.execute("""INSERT INTO classbook VALUES(
-             306, 0, 6, "09a8as", "1fsd43f", "tesast1", "test1", 
+             306, 0, 6, "09a8as", "1fsd43f", "tesast1", 
+             "test1", "5a105e8b9d40e1329780d62ea2265d8a", 
              "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
 
 def teardown():
@@ -57,6 +63,7 @@ def test_update_exists_article():
         "data": {
             "classbookid": 301,
             "content": "update_content",
+            "md5_content": "a98452078e39848d80cfca70306d2a77",
             "name": "update_test",
             "ordered": 10,
             "parentid": 0
@@ -87,6 +94,7 @@ def test_update_exists_article_woutpid():
         "data": {
             "classbookid": 302,
             "content": "update_content",
+            "md5_content": "a98452078e39848d80cfca70306d2a77",
             "name": "update_test",
             "ordered": 10,
             "parentid": 0
@@ -115,6 +123,7 @@ def test_update_exists_article_name():
         "data": {
             "classbookid": 303,
             "content": "test1",
+            "md5_content": "5a105e8b9d40e1329780d62ea2265d8a",
             "name": "update_test",
             "ordered": 3,
             "parentid": 0
@@ -186,6 +195,7 @@ def test_update_exist_article_content():
         "data": {
             "classbookid": 304,
             "content": "update_content",
+            "md5_content": "a98452078e39848d80cfca70306d2a77",
             "name": "tesast1",
             "ordered": 4,
             "parentid": 0
@@ -214,6 +224,7 @@ def test_update_exist_article_ordered():
         "data": {
             "classbookid": 305,
             "content": "test1",
+            "md5_content": "5a105e8b9d40e1329780d62ea2265d8a",
             "name": "tesast1",
             "ordered": 100,
             "parentid": 0
@@ -242,6 +253,7 @@ def test_update_exist_article_parentid():
         "data": {
             "classbookid": 301,
             "content": "test1",
+            "md5_content": "5a105e8b9d40e1329780d62ea2265d8a",
             "name": "tesast1",
             "ordered": 100,
             "parentid": 1
