@@ -8,7 +8,7 @@ Create test database by sql-queries:
 	> GRANT ALL PRIVILEGES ON test.* TO 'freehackquest_u'@'localhost' WITH GRANT OPTION;
 	> FLUSH PRIVILEGES;
 
-Change /etc/freehackquest-backend/conf.ini
+Change the name of the database for the tests in file /etc/freehackquest-backend/conf.ini
 
 	name=test
 
@@ -27,3 +27,9 @@ Download repo and change directory to repo.
 	$ git clone https://github.com/freehackquest/backend-tests.git
 	$ cd ./backend-tests
 	$ pytest
+
+## After tests
+
+Change the name of the database for the production in file /etc/freehackquest-backend/conf.ini
+
+	name=freehackquest
