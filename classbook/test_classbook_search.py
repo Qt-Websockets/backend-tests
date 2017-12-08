@@ -11,27 +11,30 @@ def setup():
         cur.execute("""DELETE FROM classbook_proposal""")
         cur.execute("""DELETE FROM classbook_localization""")
         cur.execute("""INSERT INTO classbook VALUES(
-             100, 0, 1, '098', '1f43f', 'test1', 'tefindme', 
+             100, 0, 1, '098', '1f43f', 'test1', 'tefindme',
+             'md5md5md5md5md5md5md5md5md5md5md', 
              '2017-10-10 10:10:10', '2017-10-10 10:10:10')""")
         cur.execute("""INSERT INTO classbook VALUES(
-             102, 0, 2, '098', '1f43f', 'test', 'test2', 
+             102, 0, 2, '098', '1f43f', 'test', 'test2',
+             'md5md5md5md5md5md5md5md5md5md5md',
              '2017-10-10 10:10:10', '2017-10-10 10:10:10')""")
         cur.execute("""INSERT INTO classbook VALUES(
-             103, 0, 3, '098', '1f43f', 'tutsearch', 'test2', 
+             103, 0, 3, '098', '1f43f', 'tutsearch', 'test2',
+             'md5md5md5md5md5md5md5md5md5md5md',
              '2017-10-10 10:10:10', '2017-10-10 10:10:10')""")
         cur.execute("""INSERT INTO classbook VALUES(
-             104, 100, 2, '098', '1f43f', 'test1test1', 'test1', 
+             104, 100, 2, '098', '1f43f', 'test1test1', 'test1',
+             'md5md5md5md5md5md5md5md5md5md5md',
              '2017-10-10 10:10:10', '2017-10-10 10:10:10')""")
         cur.execute("""INSERT INTO classbook_proposal VALUES(
-             105, 102, 'en', 'proposal', 'test1', 
-             '2017-10-10 10:10:10')""")
+             105, 102, 'sdsd', 'en', 'proposal', 'test1',
+             'md5md5md5md5md5md5md5md5md5md5md', NOW())""")
         cur.execute("""INSERT INTO classbook_localization VALUES(
-             104, 104, 'ru', 'тест локализации', 'локализация',
-             '2017-10-10 10:10:10', '2017-10-10 10:10:10')""")
+             104, 104, 'uuid', 'ru', 'тест локализации', 'локализация',
+             'md5md5md5md5md5md5md5md5md5md5md', NOW(), NOW())""")
         cur.execute("""INSERT INTO classbook_localization VALUES(
-             106, 0, 'ru', 'поиск', 'найди меня',
-             '2017-10-10 10:10:10', '2017-10-10 10:10:10')""")
-
+             106, 0, 'uuid', 'ru', 'поиск', 'найди меня',
+             'md5md5md5md5md5md5md5md5md5md5md', NOW(), NOW())""")
 
 def teardown():
     with db.cursor() as cur:
@@ -45,16 +48,16 @@ def test_search_in_en_name_default_parentid():
     check search in English name"""
     json_request = json.dumps({
         "parentid": 0,
-        "cmd": "classbook_search",
-        "search": "1",
+        "cmd": "classbook_list",
+        "search": "search",
         "m": "m7334"
     })
     ws.send(json_request)
     response = json.loads(ws.recv())
     print("Response: %s" % response)
-    must_be = json.loads("""{"cmd":"classbook_search",
+    must_be = json.loads("""{"cmd":"classbook_list",
         "data":[
-        {"childs":1,"classbookid":100,"name":"test1","parentid":0,"proposals":0}],
+        {"childs":0,"classbookid":103,"name":"tutsearch","parentid":0,"proposals":0}],
         "m":"m7334","result":"DONE"}""")
     assert response == must_be
 
@@ -64,7 +67,7 @@ def test_search_in_ru_name_default_parentid():
     check search in Russian name"""
     json_request = json.dumps({
         "parentid": 0,
-        "cmd": "classbook_search",
+        "cmd": "classbook_list",
         "search": "пои",
         "lang": "ru",
         "m": "m7334"
@@ -72,7 +75,7 @@ def test_search_in_ru_name_default_parentid():
     ws.send(json_request)
     response = json.loads(ws.recv())
     print("Response: %s" % response)
-    must_be = json.loads("""{"cmd":"classbook_search",
+    must_be = json.loads("""{"cmd":"classbook_list",
         "data":[
         {"childs":0,"classbookid":106,"name":"поиск","parentid":0,"proposals":0}],
         "m":"m7334","result":"DONE"}""")

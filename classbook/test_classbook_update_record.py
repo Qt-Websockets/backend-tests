@@ -251,12 +251,12 @@ def test_update_exist_article_parentid():
     must_be = json.loads("""{
         "cmd": "classbook_update_record",
         "data": {
-            "classbookid": 301,
+            "classbookid": 306,
             "content": "test1",
             "md5_content": "5a105e8b9d40e1329780d62ea2265d8a",
             "name": "tesast1",
-            "ordered": 100,
-            "parentid": 1
+            "ordered": 6,
+            "parentid": 301
         },
         "m": "m7321",
         "result": "DONE"
@@ -264,7 +264,7 @@ def test_update_exist_article_parentid():
     assert response == must_be
 
 
-def test_update_exist_article_parentid():
+def test_update_exist_article_with_not_exist_parentid():
     """Testcase for classbook_update_record handler
     Проверям обновление сущестующей статьи
     обновление не существующего parentid"""
