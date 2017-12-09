@@ -12,6 +12,8 @@ Change the name of the database for the tests in file /etc/freehackquest-backend
 
 	name=test
 
+And if not exists test account "admin" with password "admin" then change setings for connection in file backend-tests/classbook/lib.py
+
 ## Requirements
 
 Install pytest
