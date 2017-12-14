@@ -22,9 +22,45 @@ def teardown():
         cur.execute("""DELETE FROM classbook_localization""")
 
 
-def test_add_basic_record():
+def test_add_basic_record_pareintid_0():
     """Тестирует classbook_add_record
-    добавляет статью с parentid, name, content"""
+    добавляет статью с parentid = 0, name, content"""
+    json_request = json.dumps({
+        "parentid": 0,
+        "cmd": "classbook_add_record",
+        "name": "add_test",
+        "content": "add_content",
+        "m": "m8431"
+    })
+    ws.send(json_request)
+    response = json.loads(ws.recv())
+    print("Response: %s" % response)
+    if response.get("data"):
+        classbookid = response["data"]["classbookid"]
+    else:
+        classbookid = 0
+    must_be = json.loads("""{
+        "cmd": "classbook_add_record",
+        "data": 
+            {"classbookid": 410, 
+            "content": "add_content",
+            "md5_content":
+            "aa1bcaabfb81fb580cb9b97787fc4671",
+            "name": "add_test",
+            "parentid": 0},
+        "m": "m8431",
+        "result": "DONE"
+    }""") 
+    must_be["data"]["classbookid"] = classbookid
+    assert response == must_be
+    with db.cursor() as cur:
+        cur.execute(f"SELECT name FROM classbook WHERE id={classbookid}")
+        assert "add_test" == cur.fetchone()[0]
+
+
+def test_add_basic_record_parentid_not_0():
+    """Тестирует classbook_add_record
+    добавляет статью с parentid not 0, name, content"""
     json_request = json.dumps({
         "parentid": 401,
         "cmd": "classbook_add_record",
