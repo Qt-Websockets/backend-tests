@@ -39,6 +39,8 @@ def test_localization_add_record():
     classbook_localizationid = None
     with db.cursor() as cur:
         cur.execute("""SELECT id FROM classbook_localization WHERE name='doich'""")
+        #TypeError: 'NoneType' object is not subscriptable
+        #Означает что нет записи в БД
         classbook_localizationid = cur.fetchone()[0]
     assert classbook_localizationid != None
     must_be = json.loads("""{
