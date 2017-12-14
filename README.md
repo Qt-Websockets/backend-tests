@@ -20,6 +20,7 @@ Install pytest
 
 	$ sudo apt install python-pip
 	$ pip3 install -U pytest
+	$ pip3 install websocket-client PyMySQL
 
 ## Run tests
 
