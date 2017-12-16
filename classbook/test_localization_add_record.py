@@ -50,7 +50,8 @@ def test_localization_add_record():
             "classbook_localizationid": 1,
             "lang": "de",
             "name": "doich",
-            "content": "doiche"
+            "content": "doiche",
+            "md5_content": "6ea18a2bade6f5b2bcb889a9c05bbac3"
         },
         "m": "m8431",
         "result": "DONE"
