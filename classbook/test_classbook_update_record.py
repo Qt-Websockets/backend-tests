@@ -57,7 +57,7 @@ def test_update_exists_article():
     })
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     must_be = json.loads("""{
         "cmd": "classbook_update_record",
         "data": {
@@ -88,7 +88,7 @@ def test_update_exists_article_woutpid():
     })
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     must_be = json.loads("""{
         "cmd": "classbook_update_record",
         "data": {
@@ -117,7 +117,7 @@ def test_update_exists_article_name():
     })
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     must_be = json.loads("""{
         "cmd": "classbook_update_record",
         "data": {
@@ -145,7 +145,7 @@ def test_update_without_params():
     })
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     must_be = json.loads("""{
         "cmd": "classbook_update_record",
         "code": 403,
@@ -166,7 +166,7 @@ def test_update_not_exist_article():
     })
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     must_be = json.loads("""{
         "cmd": "classbook_update_record",
         "code": 404,
@@ -189,7 +189,7 @@ def test_update_exist_article_content():
     })
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     must_be = json.loads("""{
         "cmd": "classbook_update_record",
         "data": {
@@ -218,7 +218,7 @@ def test_update_exist_article_ordered():
     })
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     must_be = json.loads("""{
         "cmd": "classbook_update_record",
         "data": {
@@ -247,7 +247,7 @@ def test_update_exist_article_parentid():
     })
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     must_be = json.loads("""{
         "cmd": "classbook_update_record",
         "data": {
@@ -276,7 +276,7 @@ def test_update_exist_article_with_not_exist_parentid():
     })
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     must_be = json.loads("""{
         "cmd": "classbook_update_record",
         "code": 404,
@@ -298,7 +298,7 @@ def test_update_root_article():
     })
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     must_be = json.loads("""{
         "cmd": "classbook_update_record",
         "code": 403,

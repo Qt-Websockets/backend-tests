@@ -36,7 +36,7 @@ def test_delete_record():
     })
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     must_be = json.loads("""{
         "cmd": "classbook_delete_record",
         "m": "m8431",
@@ -58,7 +58,7 @@ def test_delete_record_with_childs():
     })
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     must_be = json.loads("""{
         "cmd": "classbook_delete_record",
         "code": 403,
@@ -81,7 +81,7 @@ def test_delete_record_with_lang():
     })
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     must_be = json.loads("""{
         "cmd": "classbook_delete_record",
         "m": "m8431",

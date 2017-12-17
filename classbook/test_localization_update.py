@@ -38,7 +38,7 @@ def test_update_exist_localization():
     })
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     must_be = json.loads("""{
         "cmd": "classbook_localization_update_record",
         "data": {
@@ -70,7 +70,7 @@ def test_update_not_exist_localization():
     })
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     must_be = json.loads("""{
         "cmd": "classbook_localization_update_record",
         "code": 404,

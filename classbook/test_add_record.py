@@ -34,7 +34,7 @@ def test_add_basic_record_pareintid_0():
     })
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     if response.get("data"):
         classbookid = response["data"]["classbookid"]
     else:
@@ -70,7 +70,7 @@ def test_add_basic_record_parentid_not_0():
     })
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     classbookid = response["data"]["classbookid"]
     must_be = json.loads("""{
         "cmd": "classbook_add_record",
@@ -103,7 +103,7 @@ def test_add_record_with_uuid():
     })
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     classbookid = response["data"]["classbookid"]
     must_be = json.loads("""{
         "cmd": "classbook_add_record",
@@ -137,7 +137,7 @@ def test_add_record_with_ordered():
     })
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     classbookid = response["data"]["classbookid"]
     must_be = json.loads("""{
         "cmd": "classbook_add_record",
@@ -169,7 +169,7 @@ def test_add_record_with_not_exist_article():
     })
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     must_be = json.loads("""{
         "cmd": "classbook_add_record",
         "code": 404,

@@ -90,7 +90,7 @@ def test_info_non_found():
     })
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     must_be = json.loads("""{
         "cmd": "classbook_info",
         "code": 404,
@@ -110,7 +110,7 @@ def test_info_without_lang():
     })
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     must_be = json.loads("""{
             "cmd": "classbook_info",
             "data": {
@@ -145,7 +145,7 @@ def test_info_with_lang_with_local():
     })
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     must_be = json.loads("""{
                     "cmd": "classbook_info",
                     "data": {
@@ -182,7 +182,7 @@ def test_info_with_lang_with_out_local():
     })
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     must_be = json.loads("""{
                 "cmd": "classbook_info",
                 "data": {
@@ -217,7 +217,7 @@ def test_info_with_lang_not_exists_article():
     })
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     must_be = json.loads("""{"cmd": "classbook_info", "code": 404, 
         "error": "Not found the article", 
         "m": "m82", "result": "FAIL"}""")
@@ -234,7 +234,7 @@ def test_info_with_unsupported_lang():
     })
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     must_be = json.loads("""{
             "cmd": "classbook_info",
             "code": 404,
@@ -255,7 +255,7 @@ def test_info_with_unsupported_lang_not_exists_article():
     })
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     must_be = json.loads("""{
             "cmd": "classbook_info",
             "code": 404,
@@ -276,7 +276,7 @@ def test_info_parents_path_2():
     })
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     must_be = json.loads("""{
         "cmd": "classbook_info",
         "data": {
@@ -316,7 +316,7 @@ def test_info_parents_path_3():
     })
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     must_be = json.loads("""{
         "cmd": "classbook_info",
         "data": {
@@ -361,7 +361,7 @@ def test_info_parents_path_4():
     })
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     must_be = json.loads("""{
         "cmd": "classbook_info",
         "data": {
@@ -411,7 +411,7 @@ def test_info_parents_path_5():
     })
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     must_be = json.loads("""{
         "cmd": "classbook_info",
         "data": {
@@ -466,7 +466,7 @@ def test_info_parents_path_6():
     })
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     must_be = json.loads("""{
         "cmd": "classbook_info",
         "data": {
@@ -521,7 +521,7 @@ def test_info_parents_path_cicle():
     })
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     must_be = json.loads("""{
         "cmd": "classbook_info",
         "data": {
@@ -557,7 +557,7 @@ def test_info_parents_path_hard_cicle_1():
     })
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     must_be = json.loads("""{
         "cmd": "classbook_info",
         "data": {
@@ -599,7 +599,7 @@ def test_info_parents_path_hard_cicle_2():
     })
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     must_be = json.loads("""{
         "cmd": "classbook_info",
         "data": {

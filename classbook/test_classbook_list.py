@@ -49,7 +49,7 @@ def test_with_default_parentid():
         {"parentid": 0, "cmd": "classbook_list", "m": "m7334"})
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     must_be = json.loads(
             """{"cmd":"classbook_list",
 		"data":[
@@ -66,7 +66,7 @@ def test_with_not_exists_parentid():
         {"parentid": 432, "cmd": "classbook_list", "m": "m7334"})
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     must_be = json.loads(
             """{
 			    "cmd": "classbook_list",
@@ -84,7 +84,7 @@ def test_with_not_default_parentid():
         {"parentid": 100, "cmd": "classbook_list", "m": "m7334"})
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     must_be = json.loads(
             """{
 			    "cmd": "classbook_list",
@@ -108,7 +108,7 @@ def test_with_exist_lang_default_parentid():
                                "cmd": "classbook_list", "m": "m7334"})
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     must_be = json.loads(
             """{
 			    "cmd": "classbook_list",

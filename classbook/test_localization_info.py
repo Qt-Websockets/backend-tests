@@ -32,7 +32,7 @@ def test_not_exist_localization_info():
     })
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     must_be = json.loads("""{
       "cmd": "classbook_localization_info",
       "code": 404,
@@ -53,7 +53,7 @@ def test_localization_info():
     })
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     must_be = json.loads("""{
       "cmd": "classbook_localization_info",
       "data": {

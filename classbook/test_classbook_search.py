@@ -54,7 +54,7 @@ def test_search_in_en_name_default_parentid():
     })
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     must_be = json.loads("""{"cmd":"classbook_list",
         "data":[
         {"childs":0,"classbookid":103,"name":"tutsearch","parentid":0,"proposals":0}],
@@ -74,7 +74,7 @@ def test_search_in_ru_name_default_parentid():
     })
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     must_be = json.loads("""{"cmd":"classbook_list",
         "data":[
         {"childs":0,"classbookid":106,"name":"поиск","parentid":0,"proposals":0}],

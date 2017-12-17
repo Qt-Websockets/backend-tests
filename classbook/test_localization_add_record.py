@@ -35,7 +35,7 @@ def test_localization_add_record():
     })
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     classbook_localizationid = None
     with db.cursor() as cur:
         cur.execute("""SELECT id FROM classbook_localization WHERE name='doich'""")
@@ -73,7 +73,7 @@ def test_localization_add_record_exist_localization():
     })
     ws.send(json_request)
     response = json.loads(ws.recv())
-    print("Response: %s" % response)
+    print("Response: %s" % json.dumps(response))
     classbook_localizationid = None
     with db.cursor() as cur:
         cur.execute("""SELECT id FROM classbook_localization WHERE name='rus'""")
