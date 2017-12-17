@@ -40,7 +40,7 @@ def test_export_html():
     print("Response: %s" % json.dumps(response))
     must_be = json.loads("""{
         "cmd": "classbook_export",
-        "data": "<!DOCTYPE HTML><html><head><title>Freehackquest classbook</title>\n<meta charset=\"utf-8\"></head>\n<body><h1> Freehackquest Classbook</h1>\n<h2>Table of contents</h2>\n<h3><a href=#401>test1</a></h3>\n<h3><a href=#402>test2</a></h3>\n<article id=401><h2>test1</h2>\n<p>test1</p></article>\n<article id=402><h2>test2</h2>\n<p>test2</p></article>\n</body></html>\n",
+        "data": "<!DOCTYPE HTML><html><head><title>Freehackquest classbook</title>\\n<meta charset=\\"utf-8\\"></head>\\n<body><h1> Freehackquest Classbook</h1>\\n<h2>Table of contents</h2>\\n<h3><a href=#401>test1</a></h3>\\n<h3><a href=#402>test2</a></h3>\\n<article id=401><h2>test1</h2>\\n<p>test1</p></article>\\n<article id=402><h2>test2</h2>\\n<p>test2</p></article>\\n</body></html>\\n",
         "m": "m8431",
         "result": "DONE"
     }""")
