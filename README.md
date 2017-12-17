@@ -16,6 +16,7 @@ And if not exists test account "admin" with password "admin" then change setings
 
 ## Requirements
 
+Tests are only run with python 3.6.
 Install pytest
 
 	$ sudo apt install python-pip
