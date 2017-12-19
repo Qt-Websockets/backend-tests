@@ -11,8 +11,8 @@ def setup():
               "test2", "md5md5md5md5md5md5md5md5md5md5md", 
              "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
         cur.execute("""INSERT INTO classbook_proposal VALUES(
-             105, 402, "uuid", "en", "proposal", 
-             "test1", "md5md5md5md5md5md5md5md5md5md5md", 
+             105, 402, "uuid", "en", "proposal", "test1", "before",
+             "before", "md5md5md5md5md5md5md5md5md5md5md", 
              "2017-10-10 10:10:10")""")
 
 def teardown():

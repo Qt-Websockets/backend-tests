@@ -11,8 +11,8 @@ def setup():
 			  "test2", "md5md5md5md5md5md5md5md5md5md5md", 
 			 "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
 		cur.execute("""INSERT INTO classbook_proposal VALUES(
-			 105, 402, "uuid", "en", "proposal", 
-			 "test1", "md5md5md5md5md5md5md5md5md5md5md", 
+			 105, 402, "uuid", "en", "proposal", "before", 
+			 "test1", "before", "md5md5md5md5md5md5md5md5md5md5md", 
 			 "2017-10-10 10:10:10")""")
 
 def teardown():
@@ -48,9 +48,11 @@ def test_proposal_add_record_exsist_article():
 		"classbook_proposal_id": 111,
 		"classbookid": 402,
 		"content": "exist article",
+		"content_before": "test2",
 		"lang": "en",
 		"md5_content": "e682fa1c72d936f876d566cfbf3a5d23",
-		"name": "add proposal"
+		"name": "add proposal",
+		"name_before": "test2"
 	  },
 	  "m": "m8431",
 	  "result": "DONE"
@@ -76,7 +78,7 @@ def test_proposal_add_record_not_exist_article():
 	must_be = json.loads("""{
 		"cmd": "classbook_proposal_add_record",
 		"code": 404,
-		"error": "This article doesn't exist",
+		"error": "This article or localization doesn't exist",
 		"m": "m8431",
 		"result": "FAIL"
 	}""")

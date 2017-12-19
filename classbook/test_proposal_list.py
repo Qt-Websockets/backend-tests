@@ -23,20 +23,20 @@ def setup():
               "test2", "md5md5md5md5md5md5md5md5md5md5md", 
              "2017-10-10 10:10:10", "2017-10-10 10:10:10")""")
         cur.execute("""INSERT INTO classbook_proposal VALUES(
-             105, 402, "uuid", "en", "proposal", 
-             "test1", "md5md5md5md5md5md5md5md5md5md5md", 
+             105, 402, "uuid", "en", "proposal", "before", 
+             "test1", "before", "md5md5md5md5md5md5md5md5md5md5md", 
              "2017-10-10 10:10:10")""")
         cur.execute("""INSERT INTO classbook_proposal VALUES(
-             106, 403, "uuid", "ru", "ru_proposal", 
-             "test1", "md5md5md5md5md5md5md5md5md5md5md", 
+             106, 403, "uuid", "ru", "ru_proposal", "before", 
+             "test1", "before", "md5md5md5md5md5md5md5md5md5md5md", 
              "2017-10-10 10:10:10")""")
         cur.execute("""INSERT INTO classbook_proposal VALUES(
-             107, 402, "uuid", "de", "deproposal", 
-             "test1", "md5md5md5md5md5md5md5md5md5md5md", 
+             107, 402, "uuid", "de", "deproposal", "before", 
+             "test1", "before", "md5md5md5md5md5md5md5md5md5md5md", 
              "2017-10-10 10:10:10")""")
         cur.execute("""INSERT INTO classbook_proposal VALUES(
-             108, 403, "uuid", "en", "proposal", 
-             "test1", "md5md5md5md5md5md5md5md5md5md5md", 
+             108, 403, "uuid", "en", "proposal", "before", 
+             "test1", "before", "md5md5md5md5md5md5md5md5md5md5md", 
              "2017-10-10 10:10:10")""")
 
 
@@ -64,25 +64,25 @@ def test_proposal_list_without_params():
             {
                 "classbookid": 0,
                 "id": 105,
-                "lang": "",
+                "lang": "en",
                 "name": "proposal"
             },
             {
                 "classbookid": 0,
                 "id": 106,
-                "lang": "",
+                "lang": "ru",
                 "name": "ru_proposal"
             },
             {
                 "classbookid": 0,
                 "id": 107,
-                "lang": "",
+                "lang": "de",
                 "name": "deproposal"
             },
             {
                 "classbookid": 0,
                 "id": 108,
-                "lang": "",
+                "lang": "en",
                 "name": "proposal"
             }
         ],

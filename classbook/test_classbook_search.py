@@ -27,8 +27,8 @@ def setup():
              'md5md5md5md5md5md5md5md5md5md5md',
              '2017-10-10 10:10:10', '2017-10-10 10:10:10')""")
         cur.execute("""INSERT INTO classbook_proposal VALUES(
-             105, 102, 'sdsd', 'en', 'proposal', 'test1',
-             'md5md5md5md5md5md5md5md5md5md5md', NOW())""")
+             105, 102, 'sdsd', 'en', 'proposal', "before", 'test1',
+             "before", 'md5md5md5md5md5md5md5md5md5md5md', NOW())""")
         cur.execute("""INSERT INTO classbook_localization VALUES(
              104, 104, 'uuid', 'ru', 'тест локализации', 'локализация',
              'md5md5md5md5md5md5md5md5md5md5md', NOW(), NOW())""")
